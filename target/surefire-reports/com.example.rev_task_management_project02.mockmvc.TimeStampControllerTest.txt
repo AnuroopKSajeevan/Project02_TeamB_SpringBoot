@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.example.rev_task_management_project02.mockmvc.TimeStampControllerTest
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.562 s -- in com.example.rev_task_management_project02.mockmvc.TimeStampControllerTest
