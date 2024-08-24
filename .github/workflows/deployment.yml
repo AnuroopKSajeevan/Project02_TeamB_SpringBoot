@@ -60,4 +60,3 @@ jobs:
           app-name: 'TaskManagementSpringBoot'
           slot-name: 'Production'
           package: '*.jar'
-          
