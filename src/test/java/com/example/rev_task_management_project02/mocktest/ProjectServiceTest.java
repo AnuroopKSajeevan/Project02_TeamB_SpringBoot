@@ -71,33 +71,6 @@ public class ProjectServiceTest {
         verify(projectRepository).findById(1L);
     }
 
-//    @Test
-//    void testCreateProject_Success() throws UserNotFoundException {
-//        String teamName = "Development Team";
-//        Project savedProject = new Project();
-//        savedProject.setProjectId(1L);
-//        savedProject.setProjectName("New Project");
-//
-//        User mockManager = mock(User.class);
-//        savedProject.setManager(mockManager);
-//
-//        when(projectRepository.save(any(Project.class))).thenReturn(savedProject);
-//
-//        Team newTeam = new Team();
-//        when(teamService.createTeam(any(Team.class))).thenReturn(newTeam);
-//
-//        Project result = projectService.createProject(savedProject, teamName);
-//
-//        assertEquals(savedProject, result);
-//        verify(projectRepository).save(savedProject);
-//        verify(teamService).createTeam(argThat(team ->
-//                team.getTeamName().equals(teamName) &&
-//                        team.getProject().equals(savedProject) &&
-//                        team.getManager().equals(savedProject.getManager())
-//        ));
-//    }
-//
-
 
     @Test
     void testGetAllProjects() {
@@ -125,16 +98,6 @@ public class ProjectServiceTest {
     }
 
 
-//    @Test
-//    void testDeleteProjectById_Success() throws ProjectNotFoundException {
-//        when(projectRepository.existsById(1L)).thenReturn(true);
-//        when(projectRepository.findById(1L)).thenReturn(Optional.of(existingProject));
-//
-//        Project deletedProject = projectService.deleteProjectById(1L);
-//
-//        verify(projectRepository, times(1)).deleteById(1L);
-//        assertEquals(existingProject, deletedProject);
-//    }
     @Test
     void testGetProjectById_NotFound() {
         when(projectRepository.findById(1L)).thenReturn(Optional.empty());
