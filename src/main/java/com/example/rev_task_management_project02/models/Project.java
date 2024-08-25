@@ -53,7 +53,7 @@ public class Project {
     @Temporal(TemporalType.TIMESTAMP)
     private Timestamp updatedAt;
 
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Task> tasks;
 }

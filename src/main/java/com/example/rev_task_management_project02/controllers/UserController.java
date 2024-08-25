@@ -8,6 +8,8 @@ import com.example.rev_task_management_project02.models.Role;
 import com.example.rev_task_management_project02.models.User;
 import com.example.rev_task_management_project02.services.UserService;
 import jakarta.mail.MessagingException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,9 +31,11 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public ResponseEntity<?> login(@RequestParam String email, @RequestParam String password) throws LoginFailedException {
+    public ResponseEntity<?> login(@RequestParam String email, @RequestParam String password, HttpSession session) throws LoginFailedException {
         User user = userService.login(email, password);
         if (user != null) {
+            session.setAttribute("username",user.getUserName());
+            session.setAttribute("email", user.getEmail());
             return ResponseEntity.ok(user);
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
@@ -132,5 +136,11 @@ public class UserController {
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid role specified.");
         }
+    }
+    @GetMapping("/getSessionData")
+    public MessageResponse getSessionData(HttpServletRequest request){
+        String username = (String) request.getSession().getAttribute("username");
+        String email = (String) request.getSession().getAttribute("email");
+        return new MessageResponse(HttpStatus.OK,"Name :"+username+" email:"+email);
     }
 }
